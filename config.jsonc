@@ -10,13 +10,14 @@
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["custom/spotify"],
   "modules-right": [
+    "tray",
+    "custom/bluetooth",
     "cpu",
     "memory",
     "pulseaudio",
     "clock",
     "clock#simpleclock",
-    "tray",
-    "custom/power",
+    "custom/power"
   ],
   "custom/spotify": {
     "format": "{}",
@@ -24,34 +25,34 @@
     "on-click": "playerctl -p spotify play-pause",
     "on-click-right": "spotifatius toggle-liked",
     "on-click-middle": "playerctl -p spotify next",
-    "exec": "spotifatius monitor",
+    "exec": "spotifatius monitor"
   },
   "wlr/workspaces": {
     "on-click": "activate",
     "format": "{name}",
     "all-outputs": true,
     "disable-scroll": false,
-    "active-only": false,
+    "active-only": false
   },
   "tray": {
     "show-passive-items": true,
-    "spacing": 10,
+    "spacing": 10
   },
   "clock#simpleclock": {
     "tooltip": false,
-    "format": "  {:%H:%M}",
+    "format": "  {:%H:%M}"
   },
   "clock": {
     "format": "  {:L%a %d %b}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "cpu": {
     "format": "  {usage}%",
     "tooltip": true,
-    "interval": 1,
+    "interval": 1
   },
   "memory": {
-    "format": "  {used:0.2f}G",
+    "format": "  {used:0.2f}G"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -63,21 +64,26 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": [" ", " ", " "],
+      "default": [" ", " ", " "]
     },
-    "on-click": "pavucontrol",
+    "on-click": "pavucontrol"
+  },
+  "custom/bluetooth": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "blueberry"
   },
   "custom/logo": {
     "format": "",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/sep": {
     "format": "|",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/power": {
     "tooltip": false,
     "on-click": "wlogout -p layer-shell &",
-    "format": "⏻ ",
-  },
+    "format": " "
+  }
 }

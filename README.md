@@ -10,7 +10,10 @@ Need environment variables to function properly. See [Spotifatius](https://githu
 
 ## Screenshot
 
-![waybar](./screenshot/waybar.png)
+<div style="display: flex; flex-direction: column;">
+    <img src="screenshot/waybar1.png">
+
+</div>
 
 ## Credits
 
