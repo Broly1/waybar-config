@@ -1,31 +1,33 @@
 {
   "layer": "bottom",
   "position": "top",
-  "height": 40,
-  "spacing": 2,
+  "height": 32,
+  "spacing": 4,
   "exclusive": true,
   "gtk-layer-shell": true,
   "passthrough": false,
   "fixed-center": true,
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["mpris"],
+  "modules-center": ["mpris", "custom/spotify"],
   "modules-right": [
     "cpu",
     "memory",
     "pulseaudio",
     "clock",
     "clock#simpleclock",
-    "tray",
+    "custom/bluetooth",
+    "custom/network",
     "custom/notification",
-    "custom/power",
+    "tray",
+    "custom/power"
   ],
   "custom/spotify": {
-    "format": "  {}",
+    "format": "{}",
     "return-type": "json",
     "on-click": "playerctl -p spotify play-pause",
     "on-click-right": "spotifatius toggle-liked",
     "on-click-middle": "playerctl -p spotify next",
-    "exec": "spotifatius monitor",
+    "exec": "spotifatius monitor"
   },
   "mpris": {
     "player": "spotify",
@@ -33,83 +35,94 @@
     "format": "{player_icon} {dynamic}",
     "format-paused": "{status_icon} <i>{dynamic}</i>",
     "status-icons": {
-      "paused": "",
+      "paused": ""
     },
     "player-icons": {
-      "default": "",
-    },
+      "default": ""
+    }
   },
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{id}",
     "all-outputs": true,
     "disable-scroll": false,
-    "active-only": false,
+    "active-only": false
   },
   "hyprland/window": {
-    "format": "{title}",
+    "format": "{title}"
   },
   "tray": {
     "show-passive-items": true,
-    "spacing": 10,
+    "spacing": 10
   },
   "clock#simpleclock": {
-    "tooltip": false,
-    "format": " {:%H:%M}",
+    "tooltip": true,
+    "tooltip-format": "Clock",
+    "format": "  {:%H:%M}"
   },
   "clock": {
-    "format": " {:L%a %d %b}",
-    "calendar": {
-      "format": {
-        "days": "<span weight='normal'>{}</span>",
-        "months": "<span color='#cdd6f4'><b>{}</b></span>",
-        "today": "<span color='#f38ba8' weight='700'><u>{}</u></span>",
-        "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
-        "weeks": "<span color='#a6e3a1'><b>W{}</b></span>",
-      },
-      "mode": "month",
-      "mode-mon-col": 1,
-      "on-scroll": 1,
-    },
-    "tooltip-format": "<span color='#cdd6f4' font='Lexend 16'><tt><small>{calendar}</small></tt></span>",
+    "format": "  {:L%a %d %b}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "cpu": {
-    "format": " {usage}%",
+    "format": "  {usage}%",
     "tooltip": true,
-    "interval": 1,
+    "interval": 1
   },
   "memory": {
-    "format": " {used:0.1f}Gi",
+    "format": "  {used:0.2f}G"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "  muted",
     "format-icons": {
-      "headphone": "",
-      "default": [" ", " ", " "],
+      "headphone": " ",
+      "hands-free": "󰂑",
+      "headset": "󰂑",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [" ", " ", " "]
     },
-    "on-click": "pavucontrol",
+    "on-click": "pavucontrol"
+  },
+  "custom/bluetooth": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "Bluedberry",
+    "on-click": "blueberry"
   },
   "custom/sep": {
     "format": "|",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/power": {
-    "tooltip": false,
-    "on-click": "wlogout -p layer-shell &",
-    "format": "⏻",
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "Power-Off",
+    "on-click": "wlogout -p layer-shell &"
+  },
+  "custom/network": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "Network Settings",
+    "on-click": "ghostty -e nmtui"
   },
   "custom/notification": {
-    "escape": true,
-    "exec": "swaync-client -swb",
-    "exec-if": "which swaync-client",
+    "tooltip": true,
     "format": "{icon}",
+    "tooltip-format": "Notifications",
     "format-icons": {
-      "none": "󰅺",
-      "notification": "󰡟",
+    "notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+    "none": "",
+    "dnd-notification": "<span foreground='red'><small><sup>⬤</sup></small></span>",
+    "dnd-none": ""
     },
-    "on-click": "sleep 0.1 && swaync-client -t -sw",
     "return-type": "json",
-    "tooltip": false,
-  },
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+    "escape": true
+  }
 }
